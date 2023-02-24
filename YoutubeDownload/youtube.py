@@ -1,3 +1,4 @@
+# Bibliotecas usadas no projeto
 from tkinter import * 
 from pytube import YouTube
 from tkinter import filedialog
@@ -8,12 +9,10 @@ janela = Tk()
 janela.title('Baixando videos do Youtube')
 
 # Função para realizar o download do link inserido
-# Utilizando a função 'filedialog.askdirectory()' para o usuario poder escolher o diretorio do download
-# Condição caso não seja inserido nenhum link 
 def download(link_):
-    if link_:
+    if link_: # Condição para chamar a função de aviso, caso não seja inserido nenhum link 
         try:
-            pasta = filedialog.askdirectory()
+            pasta = filedialog.askdirectory() # Comando utilizada para o usúario escolher o diretorio do download
             YouTube(link_).streams.get_highest_resolution().download(pasta)
             aviso()
         except RegexMatchError:
@@ -49,6 +48,7 @@ link.pack(side='left')
 # Criando um botão para efetuar o download 
 Button(quadro, bg='red', text='>>>', bd=1, fg='white', width=4, height=2, command=lambda: download(link.get())).pack()
 
+# Comando para deixar a janela aberta por tempo indeterminado
 janela.mainloop()
 
 
